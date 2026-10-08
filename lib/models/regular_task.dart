@@ -10,6 +10,9 @@ class RegularTask extends Task {
   });
 
   @override
+  String get type => 'regular';
+
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -17,7 +20,7 @@ class RegularTask extends Task {
       'priority': priority.name,
       'dueDate': dueDate?.toIso8601String(),
       'isCompleted': isCompleted,
-      'type': 'regular',
+      'type': type,
     };
   }
 

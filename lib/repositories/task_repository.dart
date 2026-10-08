@@ -2,16 +2,16 @@ import '../exceptions/task_exceptions.dart';
 import '../models/task.dart';
 import 'repository.dart';
 
-class TaskRepository implements Repository<Task> {
-  final List<Task> _tasks = [];
+class TaskRepository<T extends Task> implements Repository<T> {
+  final List<T> _tasks = [];
 
   @override
-  Future<List<Task>> getAll() async {
+  Future<List<T>> getAll() async {
     return List.unmodifiable(_tasks);
   }
 
   @override
-  Future<Task?> getById(int id) async {
+  Future<T?> getById(int id) async {
     for (final task in _tasks) {
       if (task.id == id) {
         return task;
@@ -22,7 +22,7 @@ class TaskRepository implements Repository<Task> {
   }
 
   @override
-  Future<void> add(Task item) async {
+  Future<void> add(T item) async {
     if (item.title.trim().isEmpty) {
       throw InvalidTaskException(
         'Le titre de la tâche ne peut pas être vide.',
@@ -41,8 +41,10 @@ class TaskRepository implements Repository<Task> {
   }
 
   @override
-  Future<void> update(Task item) async {
-    final index = _tasks.indexWhere((task) => task.id == item.id);
+  Future<void> update(T item) async {
+    final index = _tasks.indexWhere(
+      (task) => task.id == item.id,
+    );
 
     if (index == -1) {
       throw TaskNotFoundException(item.id);
@@ -53,7 +55,9 @@ class TaskRepository implements Repository<Task> {
 
   @override
   Future<void> delete(int id) async {
-    final index = _tasks.indexWhere((task) => task.id == id);
+    final index = _tasks.indexWhere(
+      (task) => task.id == id,
+    );
 
     if (index == -1) {
       throw TaskNotFoundException(id);

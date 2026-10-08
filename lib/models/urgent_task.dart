@@ -10,6 +10,9 @@ class UrgentTask extends Task {
   });
 
   @override
+  String get type => 'urgent';
+
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -17,7 +20,7 @@ class UrgentTask extends Task {
       'priority': priority.name,
       'dueDate': dueDate?.toIso8601String(),
       'isCompleted': isCompleted,
-      'type': 'urgent',
+      'type': type,
     };
   }
 

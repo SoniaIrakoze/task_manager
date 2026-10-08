@@ -19,6 +19,9 @@ abstract class Task {
     this.isCompleted = false,
   });
 
+  /// Type de tâche défini par chaque classe fille.
+  String get type;
+
   void complete() {
     isCompleted = true;
   }

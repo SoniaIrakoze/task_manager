@@ -6,10 +6,10 @@ import 'package:task_manager/repositories/task_repository.dart';
 
 void main() {
   group('TaskRepository', () {
-    late TaskRepository repository;
+    late TaskRepository<Task> repository;
 
     setUp(() {
-      repository = TaskRepository();
+      repository = TaskRepository<Task>();
     });
 
     test('ajoute une tâche', () async {
@@ -75,13 +75,15 @@ void main() {
       expect(result, isNull);
     });
 
-    test('lance TaskNotFoundException si la tâche à supprimer n’existe pas',
-        () async {
-      expect(
-        () => repository.delete(999),
-        throwsA(isA<TaskNotFoundException>()),
-      );
-    });
+    test(
+      'lance TaskNotFoundException si la tâche à supprimer n’existe pas',
+      () async {
+        expect(
+          () => repository.delete(999),
+          throwsA(isA<TaskNotFoundException>()),
+        );
+      },
+    );
 
     test('refuse une tâche avec un titre vide', () async {
       final task = TestTask(
@@ -108,6 +110,9 @@ class TestTask extends Task {
   });
 
   @override
+  String get type => 'test';
+
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -115,7 +120,7 @@ class TestTask extends Task {
       'priority': priority.name,
       'dueDate': dueDate?.toIso8601String(),
       'isCompleted': isCompleted,
-      'type': 'test',
+      'type': type,
     };
   }
 
