@@ -1,0 +1,22 @@
+# Dart
+.dart_tool/
+.packages
+build/
+
+# IDE
+.idea/
+.vscode/
+
+# Windows
+*.bat
+*.cmd
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Generated files
+*.g.dart

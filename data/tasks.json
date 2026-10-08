@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "title": "Faire le rapport",
+    "priority": "medium",
+    "dueDate": "2026-10-15T00:00:00.000",
+    "isCompleted": true,
+    "type": "regular"
+  },
+  {
+    "id": 2,
+    "title": "PrÃ©parer la rÃ©union",
+    "priority": "high",
+    "dueDate": "2026-10-20T00:00:00.000",
+    "isCompleted": false,
+    "type": "regular"
+  }
+]
